@@ -1,8 +1,11 @@
-package io.github.lukeeff;
+package io.github.lukeeff.anv;
 
+import io.github.lukeeff.anv.text.AnvTextUtil;
 import lombok.Getter;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.LivingEntity;
+
+import java.util.UUID;
 
 /**
  * An AnvilLivingEntity. Keeping things simple for developers.
@@ -12,10 +15,10 @@ import net.minecraft.world.entity.LivingEntity;
  */
 public class AnvLivingEntity {
 
-    @Getter private final LivingEntity livingEntity;
+    @Getter private final LivingEntity handle;
 
     public AnvLivingEntity(LivingEntity livingEntity) {
-        this.livingEntity = livingEntity;
+        this.handle = livingEntity;
     }
 
     /**
@@ -24,7 +27,8 @@ public class AnvLivingEntity {
      * @param message the message being sent to the entity.
      */
     public void sendMessage(String message) {
-        livingEntity.sendMessage(new TextComponent(message), livingEntity.getUUID());
+
+        handle.sendMessage(AnvTextUtil.toChatComp(message), handle.getUUID());
     }
 
     /**
@@ -36,7 +40,7 @@ public class AnvLivingEntity {
         if(newHealth <= 0) {
             kill();
         } else {
-            livingEntity.setHealth(newHealth);
+            handle.setHealth(newHealth);
         }
     }
 
@@ -44,8 +48,18 @@ public class AnvLivingEntity {
      * Kills the entity.
      */
     public void kill() {
-        livingEntity.kill();
+        handle.kill();
     }
+
+    /**
+     * Gets the UUID of the entity.
+     *
+     * @return the UUID of the entity.
+     */
+    public UUID getUUID() {
+        return handle.getUUID();
+    }
+
 
 
 }

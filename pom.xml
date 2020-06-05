@@ -13,7 +13,7 @@
         <dependency>
             <groupId>io.github.lukeeff</groupId>
             <artifactId>minecraft-server</artifactId>
-            <version>20w22a</version>
+            <version>1_16pre2</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
