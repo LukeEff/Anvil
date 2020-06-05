@@ -18,6 +18,9 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BooleanSupplier;
+
+import io.github.lukeeff.debug.Debug;
+import io.github.lukeeff.event.EventManager;
 import joptsimple.AbstractOptionSpec;
 import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.NonOptionArgumentSpec;
@@ -50,7 +53,6 @@ import org.apache.logging.log4j.Logger;
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
 
-
     public Main() {
     }
 
@@ -70,6 +72,16 @@ public class Main {
         ArgumentAcceptingOptionSpec port = optionParser.accepts("port").withRequiredArg().ofType(Integer.class).defaultsTo(-1);
         ArgumentAcceptingOptionSpec serverId = optionParser.accepts("serverId").withRequiredArg();
         NonOptionArgumentSpec nonOptions = optionParser.nonOptions();
+
+        System.out.println(" _____           _   _     _           _   _         _                                                  _   _             \n" +
+                " |_   _|         (_) | |   (_)         | | (_)       (_)                         /\\                     (_) | |            \n" +
+                "   | |    _ __    _  | |_   _    __ _  | |  _   ____  _   _ __     __ _         /  \\     _ __   __   __  _  | |            \n" +
+                "   | |   | '_ \\  | | | __| | |  / _` | | | | | |_  / | | | '_ \\   / _` |       / /\\ \\   | '_ \\  \\ \\ / / | | | |            \n" +
+                "  _| |_  | | | | | | | |_  | | | (_| | | | | |  / /  | | | | | | | (_| |      / ____ \\  | | | |  \\ V /  | | | |  _   _   _ \n" +
+                " |_____| |_| |_| |_|  \\__| |_|  \\__,_| |_| |_| /___| |_| |_| |_|  \\__, |     /_/    \\_\\ |_| |_|   \\_/   |_| |_| (_) (_) (_)\n" +
+                "                                                                   __/ |                                                   \n" +
+                "                                                                  |___/                                                    \n");
+
 
         try {
             OptionSet optionSet = optionParser.parse(args);
@@ -139,6 +151,8 @@ public class Main {
                 var40.close();
                 return;
             }
+
+            EventManager.register(new Debug());
 
             var33.updateGlobals();
             final DedicatedServer var34 = new DedicatedServer(var28, var40, var33, (WorldData)var29, var18, DataFixers.getDataFixer(), sessionService, repository, var25, LoggerChunkProgressListener::new);
