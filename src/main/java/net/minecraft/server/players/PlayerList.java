@@ -794,9 +794,9 @@ public abstract class PlayerList {
 
     }
 
-    public void broadcastMessage(Component var1, ChatType var2, UUID var3) {
-        this.server.sendMessage(var1, var3);
-        this.broadcastAll(new ClientboundChatPacket(var1, var2, var3));
+    public void broadcastMessage(Component msg, ChatType chatType, UUID uuid) {
+        this.server.sendMessage(msg, uuid);
+        this.broadcastAll(new ClientboundChatPacket(msg, chatType, uuid));
     }
 
     public ServerStatsCounter getPlayerStats(Player var1) {

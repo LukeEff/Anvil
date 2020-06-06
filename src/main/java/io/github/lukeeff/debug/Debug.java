@@ -1,11 +1,15 @@
 package io.github.lukeeff.debug;
 
+import com.mojang.authlib.GameProfile;
 import io.github.lukeeff.anv.AnvLivingEntity;
+import io.github.lukeeff.anv.AnvPlayer;
+import io.github.lukeeff.anv.Anvil;
 import io.github.lukeeff.event.EventHandler;
 import io.github.lukeeff.event.Listener;
 import io.github.lukeeff.event.events.DeopPlayerEvent;
 import io.github.lukeeff.event.events.EffectAddedEvent;
 import io.github.lukeeff.event.events.OpPlayerEvent;
+import io.github.lukeeff.event.events.OpPlayersCommandEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -42,7 +46,6 @@ public class Debug implements Listener {
     @EventHandler
     public void onDeop(DeopPlayerEvent event) {
         event.getPlayer().sendMessage("Nice job");
-        event.getPlayer().kill();
     }
 
 }

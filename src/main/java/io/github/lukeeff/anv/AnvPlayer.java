@@ -15,6 +15,7 @@ public class AnvPlayer extends AnvLivingEntity {
         super(player);
     }
 
+
     public void sendTitle(String title, String subTitle, int fadeIn, int stay, int fadeOut) {
         Component theTitle = AnvTextUtil.toChatComp(title);
         Component theSubTitle = AnvTextUtil.toChatComp(subTitle);

@@ -5,6 +5,7 @@ import io.github.lukeeff.event.Cancellable;
 import io.github.lukeeff.event.Event;
 import io.github.lukeeff.event.Listener;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.server.level.ServerPlayer;
 
 /**
@@ -17,6 +18,7 @@ public class OpPlayerEvent implements Event, Listener, Cancellable {
 
     @Getter private AnvPlayer player;
     @Getter private boolean cancel;
+    @Getter @Setter private boolean silent;
 
     public OpPlayerEvent(ServerPlayer player) {
         this.player = new AnvPlayer(player);
